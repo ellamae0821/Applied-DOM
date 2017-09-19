@@ -102,9 +102,8 @@ btn2.addEventListener("click", () => {
    * the handler method will be a reference to the setMyLightGreen function
    */
 
-btn3.addEventListener("click", function(){
-  setMyLightGreen.apply(this);
-});
+btn3.addEventListener("click", setMyLightGreen);
+
   /*
    * Add a click event listener to btn4
    * the handler method will be an anonymous function expression
@@ -129,8 +128,8 @@ btn4.addEventListener("click", function(event){
    * to set the context to the correct object
    *   and passing two aditional arguments, event and 'light-green'
    */
-btn5.addEventListener("click", () => {
-  setMyLightGreen.apply(btn5, ["event", "light-green"]);
+btn5.addEventListener("click", (event) => { //fat arrow looks for the next outer scope , that's why this is not used.
+  setMyLightClass.apply(btn5, [event, "light-green"]);
 });
 
 
@@ -143,7 +142,7 @@ btn5.addEventListener("click", () => {
    * to set the context to the correct object (the current context)
    */
 btn6.addEventListener("click", function(){
- setMyLightGreen.call(this) ;
+ setMyLightGreen.call(this) ; // or btn6
 });
 
   /*
@@ -171,7 +170,7 @@ btn7.addEventListener("click", () => {
    */
 
 btn8.addEventListener("click", function(event){
-  setMyLightGreen.call(this, event, "light-green");
+  setMyLightClass.call(this, event, "light-green"); // btn8
 });
 
   /*
@@ -185,7 +184,7 @@ btn8.addEventListener("click", function(event){
    *   and passing two aditional arguments, event and 'light-green'
    */
 btn9.addEventListener("click", function(event){
-  setMyLightClass.call(btn9, event, "light-green");
+  setMyLightClass.call(btn9, event, "light-green"); //btn9 or event.target
 });
 
   /*
@@ -273,7 +272,7 @@ btn12.addEventListener("click", function(event){
 
 
 btn13.addEventListener("click", function(event){
-  setMyLightClass.bind(this)(event, "light-green");
+  setMyLightClass.bind(this)(event, "light-green"); // second set of parameter invokes the new function that bind produced
 });
 
   /*
@@ -301,7 +300,7 @@ setMyLightClass.bind(this)(event, "light-green");
 });
 */
 
-btn15.addEventListener("click", setMyLightClass.bind(btn15)(event, "light-green"));
+btn15.addEventListener("click", setMyLightClass.bind(btn15, event, "light-green"));
 
 
 }(window));
