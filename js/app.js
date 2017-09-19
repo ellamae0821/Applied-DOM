@@ -196,7 +196,7 @@ btn9.addEventListener("click", function(event){
    */
 
 const setLight10Green = setMyLightGreen.bind(btn10);
-setLight10Green();
+
 
 
   /*
@@ -206,9 +206,9 @@ setLight10Green();
    * will invoke the setLight10Green function
    */
 
-btn10.addEventListener = function(){
-  setLight10Green();
-};
+btn10.addEventListener("click", function() {
+setLight10Green();
+});
 
   /*
    * Declare a new const named setLight11Green
@@ -219,8 +219,8 @@ btn10.addEventListener = function(){
    *     null, 'light-green'
    */
 
-const setLight11Green = setMyLightClass.bind(btn11);
-setLight11Green(null, "light-green");
+const setLight11Green = setMyLightClass.bind(btn11, null, "light-green");
+//setLight11Green();
   /*
    * Add a click event listener to btn11
    * the handler method will be an anonymous function expression
@@ -228,9 +228,9 @@ setLight11Green(null, "light-green");
    * will invoke the setLight11Green function
    */
 
-btn11.addEventListener = function(){
+btn11.addEventListener("click", function(){
   setLight11Green();
-};
+});
 
   /*
    * Declare a new const named setLight12Class
@@ -240,7 +240,7 @@ btn11.addEventListener = function(){
    */
 
 const setLight12Class = setMyLightClass.bind(btn12);
-setLight12Class();
+//setLight12Class();
 
   /*
    * Add a click event listener to btn12
@@ -272,6 +272,9 @@ btn12.addEventListener("click", function(event){
    */
 
 
+btn13.addEventListener("click", function(event){
+  setMyLightClass.bind(this)(event, "light-green");
+});
 
   /*
    * Add a click event listener to btn14
@@ -279,6 +282,10 @@ btn12.addEventListener("click", function(event){
    * that is the result of invoking the Function prototype method, bind
    * on the setMyLightGreen function
    */
+
+btn14.addEventListener("click", function(){
+  setMyLightGreen.bind(this)(event, "light-green");
+});
 
 
   /*
@@ -289,5 +296,8 @@ btn12.addEventListener("click", function(event){
    * Hint: Do not declare a new function expression as an event handler.
    */
 
+btn15.addEventListener("click", function(){
+setMyLightClass.bind(this)(event, "light-green")
+});
 
 }(window));
